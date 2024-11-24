@@ -3,7 +3,7 @@ title: "CEVE 101: Project 03"
 author: "Ricardo De Quevedo (rd72)"
 date: "2024-10-23"
 output: html_document
-kernel: julia-1.11
+engine: julia
 code-annotations: hover
 format:
     html: default
@@ -26,7 +26,7 @@ using RainwaterHarvesting         # <2>
 Next, we specify the path to the rainfall data file and read it in.
 
 ```{julia}
-filepath = "data/122.txt" # <1>   
+filepath = "data/83.txt" # <1>   
 rainfall_data = RainfallData(filepath) # <2>
 ```
 
@@ -50,11 +50,13 @@ plot(rainfall_data) # <1>
 
 ### Discussion
 
-*Insert discussion here*
+The years that kept are the number of years present in the graph after cleaning: 49 years. This is a sufficient data sample because of the longivity of time. According to the research done, the state of Ceara, Brazil, experienced a drought from 2012 to 2018. My data does contain this period of time; however, based of data the region chosen was not hit by this drought becuase there was no missing data for that time period. Therefore, the data is both sufficient and consistant between all 35 years.
 
 ## Understanding the Theoretical Model
 
 Let's explore the model that simulates the rainwater harvesting system.
+
+A limiting assumptions is that the consumption of water begins after the rainy season began, about 150 days into the year, and that the average household consumes about 74.1 liters per day. These assumptions can be accounted forby modifying the equations to introduce an outisde varibles to allow for flexibility in the water usage model (Accounting for randomness), such as margin of error.
 
 ### Mass Balance Equation
 
@@ -97,7 +99,6 @@ This makes two major assumptiuons.
 First, the household begins using water from the tank after the 150th day of the year.
 This is based on the idea that the rainy season lasts for about the first 150 days of the year, and so they may have other sources of water before then.
 The second assumption is that each household consumes 74.1 liters per day during the dry season.
-How does this compare to your household's water usage?
 
 ## Model Implementation and Testing
 
@@ -110,7 +111,7 @@ You will have the opportunity to change these values later.
 #| output: false
 param = ModelParameters(          # <1>
     runoff_coefficient=0.85,      # <2>
-    roof_area_m2=45.0,            # <3>
+    roof_area_m2=75.0,            # <3>
     first_flush_mm=2.0,           # <4>
     tank_capacity_L=16000.0       # <5>
 )
@@ -121,6 +122,8 @@ param = ModelParameters(          # <1>
 3. The roof area ($A$) is the area of the roof that the rain falls on.
 4. The first flush volume ($V_f$) is the volume of rain that is discarded because it is dirty.
 5. The tank capacity ($V_\text{max}$) is the maximum volume of the tank.
+
+The area of the roof was changed from 45 to 75 m2 to allow for a greater amount of surface area for the rainfall to land on. The graph only changed by a little; however, the graph indicates that more water is avilable to fill up the tank earlier/faster than before the parameter was changed.
 
 ### Running the Simulation for One Year
 
@@ -157,6 +160,8 @@ all_results = [run_timesteps(rainfall_data.annual_data[year], param) for year in
 any_failures = [!isempty(result.failure_dates) for result in all_results]  # <3>
 println("Number of years with failures: ", sum(any_failures), " out of ", length(all_years))  # <4>
 ```
+
+Since the eqution provided that the failure was 0 out of 49, this code is reliable for this specific region, given the data. The systems reliablility percentage is 100%, which mean this data and code can be used for these specific measuremnts and conditions. 
 
 1. We get all the years in order.
 2. We run the simulation for each year.

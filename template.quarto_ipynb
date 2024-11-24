@@ -36,7 +36,7 @@
         "\n",
         "\n",
         "```{julia}\n",
-        "filepath = \"data/1.txt\" # <1>   \n",
+        "filepath = \"data/122.txt\" # <1>   \n",
         "rainfall_data = RainfallData(filepath) # <2>\n",
         "```\n",
         "\n",
@@ -63,7 +63,7 @@
         "\n",
         "### Discussion\n",
         "\n",
-        "*Insert discussion here*\n",
+        "*The years that *\n",
         "\n",
         "## Understanding the Theoretical Model\n",
         "\n",
@@ -184,7 +184,7 @@
         "3. We check if any failures occurred.\n",
         "4. We print the number of years with failures and the total number of years."
       ],
-      "id": "65bba29d"
+      "id": "bc251418"
     }
   ],
   "metadata": {
