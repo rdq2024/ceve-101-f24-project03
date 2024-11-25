@@ -3,7 +3,7 @@ title: "CEVE 101: Project 03"
 author: "Ricardo De Quevedo (rd72)"
 date: "2024-10-23"
 output: html_document
-engine: julia
+kernel: julia-1.11
 code-annotations: hover
 format:
     html: default
@@ -50,13 +50,13 @@ plot(rainfall_data) # <1>
 
 ### Discussion
 
-The years that kept are the number of years present in the graph after cleaning: 49 years. This is a sufficient data sample because of the longivity of time. According to the research done, the state of Ceara, Brazil, experienced a drought from 2012 to 2018. My data does contain this period of time; however, based of data the region chosen was not hit by this drought becuase there was no missing data for that time period. Therefore, the data is both sufficient and consistant between all 35 years.
+The years that are kept are the number of years present in the graph after cleaning: 49 years. This is a sufficient data sample because of the longevity of time. According to the research, the state of Ceara, Brazil, experienced a drought from 2012 to 2018. My data does contain this period of time; however, based on the data, the region chosen was not hit by this drought because there was no missing data for that time period. Therefore, the data is both sufficient and consistent between all 35 years.
 
 ## Understanding the Theoretical Model
 
 Let's explore the model that simulates the rainwater harvesting system.
 
-A limiting assumptions is that the consumption of water begins after the rainy season began, about 150 days into the year, and that the average household consumes about 74.1 liters per day. These assumptions can be accounted forby modifying the equations to introduce an outisde varibles to allow for flexibility in the water usage model (Accounting for randomness), such as margin of error.
+A limiting assumption is that the consumption of water begins after the rainy season begins, about 150 days into the year and that the average household consumes about 74.1 liters per day. These assumptions can be accounted by modifying the equations to introduce outside variables to allow for flexibility in the water usage model (Accounting for randomness), such as margin of error.
 
 ### Mass Balance Equation
 
